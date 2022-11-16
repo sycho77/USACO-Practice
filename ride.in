@@ -1,0 +1,46 @@
+/*
+TASK: ride
+LANG: C++                 
+*/
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    
+string comet, group;
+int c=1;
+int g=1;
+
+ifstream fin("ride.in");
+ofstream fout("ride.out");
+
+fin >> comet;
+fin >> group;
+
+  //converting each alphabets in to numbers and multiplying
+  for(int i=0; i<comet.length();i++){
+    int x = comet[i] - 64;
+    c *= x;
+  }
+
+  for(int w=0; w<group.length();w++){
+    int y = group[w] - 64;
+    g *= y;
+  }
+
+  c = c % 47;
+  g = g % 47;
+
+  if(c==g){
+    fout << "GO" << endl;
+  }
+  else{
+    fout << "STAY" << endl;
+  }
+
+  return 0;
+}
