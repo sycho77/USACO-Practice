@@ -1,0 +1,62 @@
+/*
+TASK: friday
+LANG: C++                 
+*/
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+    /* s  s  m  t  w  t  f
+             1  2  3  4  5
+       6  7  8  9 10 11 12
+      13 14 15 16 17 18 19
+      20 21 22 23 24 25 26
+      27 28 29 30 31  1
+    */
+
+int main(){
+  int nYear = 0;
+  cin >> nYear;
+
+  int day[7] = {0, 0, 0, 0, 0, 0, 0};
+  int month[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  int startDay=2;
+
+  
+  for(int i=1900; i<1900+nYear+1; i++){ 
+
+    if((i%4 ==0 && i%100 !=0) || i%400==0)
+      month[1] = 29;
+    
+    for(int j=0; j<12; j++){ 
+    //1일은 무슨요일인가?
+      cout << endl << endl <<"Month : "<< j+1 << endl;
+      cout <<"  S  S  M  T  W  T  F  " << endl;
+      for(int x=0;x<startDay;x++)
+       cout << "   ";
+      for(int h=1; h<=month[j]; h++){ 
+        cout << setw(3) << h;      
+        if((startDay+h)%7==0){
+          cout << endl;
+        }
+        if(h==13){            
+          day[(startDay+12)%7]++;
+        } 
+      }
+    
+     startDay=(startDay+month[j])%7;
+    }
+    
+  }
+  cout << endl;
+  for(int i=0; i<7; i++){
+    cout << day[i] << " ";
+  }
+}
+
+
+
+    
